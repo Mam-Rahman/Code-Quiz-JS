@@ -3,7 +3,6 @@ let currentQuestionIndex = 0;
 let time = questions.length * 15;
 let timerID;
 
-
 // HTML elements;
 let questionsElement = document.getElementById("questions");
 let timerElement = document.getElementById("time");
@@ -13,9 +12,8 @@ let startButton = document.getElementById("start");
 let initialElement = document.getElementById("initials");
 let feedBackElement = document.getElementById("feedback");
 
-
 let sfxRight = new Audio("assets/sfx/correct.wav");
-
+let sfxWrong = new Audio("assets/sfx/incorrect.wav");
 
 function questionCLick() {
     if(this.value !== questions[currentQuestionIndex].answer) {
@@ -26,7 +24,7 @@ function questionCLick() {
       }
 
       timerElement.textContent = time;
-
+      sfxWrong.play();
       feedBackElement.textContent = "Wrong"
     } else {
         sfxRight.play();
@@ -74,7 +72,6 @@ function getQuestion(){
 }
 
 
-
 function quizEnd(){
     clearInterval(timerID);
 
@@ -111,8 +108,6 @@ function startQuiz(){
 
     getQuestion();
 }
-
-
 
 
 function saveHighScore(){
